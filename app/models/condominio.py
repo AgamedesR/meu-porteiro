@@ -1,8 +1,9 @@
+from typing import TYPE_CHECKING
+
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db import Base
 
-from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from app.models.unidade import Unidade
 

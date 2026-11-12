@@ -1,10 +1,12 @@
+from typing import TYPE_CHECKING
+
 from sqlalchemy import ForeignKey, String, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db import Base
 
-from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from app.models.condominio import Condominio
+    from app.models.morador import Morador
 
 class Unidade(Base):
     __tablename__ = "unidades"
@@ -16,3 +18,4 @@ class Unidade(Base):
     numero: Mapped[str] = mapped_column(String(10))
 
     condominio: Mapped["Condominio"] = relationship(back_populates="unidades")
+    moradores: Mapped[list["Morador"]] = relationship(back_populates="unidade")
