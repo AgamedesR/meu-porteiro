@@ -7,6 +7,7 @@ from app.db import Base
 if TYPE_CHECKING:
     from app.models.condominio import Condominio
     from app.models.morador import Morador
+    from app.models.encomenda import Encomenda
 
 class Unidade(Base):
     __tablename__ = "unidades"
@@ -19,3 +20,4 @@ class Unidade(Base):
 
     condominio: Mapped["Condominio"] = relationship(back_populates="unidades")
     moradores: Mapped[list["Morador"]] = relationship(back_populates="unidade")
+    encomendas: Mapped[list["Encomenda"]] = relationship(back_populates="unidade")
