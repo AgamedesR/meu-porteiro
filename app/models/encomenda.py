@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from app.models.condominio import Condominio
     from app.models.morador import Morador
     from app.models.unidade import Unidade
+    from app.models.retirada import Retirada
 
 class Encomenda(Base):
     __tablename__ = "encomendas"
@@ -26,4 +27,5 @@ class Encomenda(Base):
 
     condominio: Mapped["Condominio"] = relationship()
     unidade: Mapped["Unidade"] = relationship(back_populates="encomendas")
-    destinatario: Mapped["Morador"] = relationship()
+    destinatario: Mapped["Morador | None"] = relationship()
+    retirada: Mapped["Retirada | None"] = relationship(back_populates="encomenda")
