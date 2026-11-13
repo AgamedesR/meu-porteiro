@@ -1,3 +1,9 @@
+"""Unidade: um apartamento dentro de um condomínio (andar e número).
+
+O número é único dentro do mesmo condomínio. Uma unidade tem vários
+moradores e recebe várias encomendas.
+"""
+
 from typing import TYPE_CHECKING
 
 from sqlalchemy import ForeignKey, String, UniqueConstraint

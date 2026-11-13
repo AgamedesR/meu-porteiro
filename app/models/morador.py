@@ -1,3 +1,9 @@
+"""Morador: pessoa cadastrada em uma unidade, que recebe os avisos.
+
+O campo ativo permite desativar quem se mudou sem apagar o histórico.
+O telefone é texto para preservar zeros e símbolos.
+"""
+
 from typing import TYPE_CHECKING
 
 from sqlalchemy import ForeignKey, String

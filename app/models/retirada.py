@@ -1,3 +1,10 @@
+"""Retirada: registro de que uma encomenda foi entregue.
+
+Cada encomenda tem no máximo uma retirada (encomenda_id é único). Guarda o
+porteiro que entregou, o horário e quem levou: um morador ou um terceiro
+identificado pelo nome.
+"""
+
 from typing import TYPE_CHECKING
 from datetime import datetime
 

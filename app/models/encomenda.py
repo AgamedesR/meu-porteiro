@@ -1,3 +1,9 @@
+"""Encomenda: pacote que chegou na portaria para uma unidade.
+
+Guarda o destinatário (opcional), a transportadora, o status, o código de
+retirada (4 dígitos, usado na entrega) e os momentos de chegada e de aviso.
+"""
+
 from typing import TYPE_CHECKING
 from datetime import datetime
 

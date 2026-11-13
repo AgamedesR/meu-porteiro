@@ -1,3 +1,10 @@
+"""Condomínio: cada prédio cliente do sistema.
+
+É a raiz da hierarquia: unidades, usuários e encomendas pertencem a um
+condomínio, o que isola os dados de um prédio dos de outro.
+modo_aviso define como os moradores são avisados (padrão: todos).
+"""
+
 from typing import TYPE_CHECKING
 
 from sqlalchemy import String
