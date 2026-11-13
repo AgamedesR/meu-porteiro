@@ -30,6 +30,7 @@ class Encomenda(Base):
     codigo_retirada: Mapped[str] = mapped_column(String(4), index=True)
     recebida_em: Mapped[datetime] = mapped_column(default=datetime.now)
     avisada_em: Mapped[datetime | None]
+    observacao: Mapped[str | None] = mapped_column(String(200))
 
     condominio: Mapped["Condominio"] = relationship()
     unidade: Mapped["Unidade"] = relationship(back_populates="encomendas")
