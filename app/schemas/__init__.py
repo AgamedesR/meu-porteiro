@@ -1,0 +1,1 @@
+"""Schemas: validação e formato dos dados da API."""

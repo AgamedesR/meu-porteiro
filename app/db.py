@@ -1,3 +1,9 @@
+"""Conexão com o banco: engine, sessões e a Base dos modelos.
+
+A convenção de nomes dá nome previsível às constraints, o que o Alembic
+precisa para alterá-las em migrações futuras.
+"""
+
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
@@ -20,6 +26,7 @@ class Base(DeclarativeBase):
 
 
 def get_db():
+    """Abre uma sessão por requisição e a fecha ao terminar, mesmo se der erro."""
     db = SessionLocal()
     try:
         yield db

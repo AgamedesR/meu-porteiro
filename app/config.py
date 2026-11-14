@@ -1,3 +1,5 @@
+"""Configurações da aplicação, lidas do arquivo .env."""
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):

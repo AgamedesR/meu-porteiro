@@ -1,0 +1,1 @@
+"""Routers: rotas HTTP de cada recurso."""
