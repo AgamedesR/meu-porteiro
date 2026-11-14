@@ -1,7 +1,7 @@
-''' Script que conecta o Alembic ao banco e aos seus modelos'''
+'''conecta o Alembic ao seu banco e aos seus modelos'''
 from app.config import settings
-from app.db import Base
-import app.models
+from app.db import Base 
+import app.models # carrega os modelos (senão ele vê "zero tabelas")
 
 from logging.config import fileConfig
 
@@ -13,7 +13,7 @@ from alembic import context
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
-config.set_main_option("sqlalchemy.url", settings.database_url)
+config.set_main_option("sqlalchemy.url", settings.database_url) # onde está o banco
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
@@ -24,7 +24,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = Base.metadata
+target_metadata = Base.metadata # o catálogo de tabelas a comparar
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
