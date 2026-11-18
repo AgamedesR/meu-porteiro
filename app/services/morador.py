@@ -7,21 +7,15 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.exceptions import NaoEncontrado
-from app.models.condominio import Condominio
 from app.models.morador import Morador
 from app.models.unidade import Unidade
 from app.schemas.morador import MoradorCriar
-
-
-def _exigir_condominio(db: Session, condominio_id: int) -> None:
-    """Levanta erro se o condomínio não existir."""
-    if db.get(Condominio, condominio_id) is None:
-        raise NaoEncontrado("Condomínio não encontrado")
+from app.services.comum import exigir_condominio
 
 
 def criar_morador(db: Session, condominio_id: int, dados: MoradorCriar) -> Morador:
     """Cadastra um morador em uma unidade que pertença ao condomínio."""
-    _exigir_condominio(db, condominio_id)
+    exigir_condominio(db, condominio_id)
     unidade = db.get(Unidade, dados.unidade_id)
     # A mesma mensagem vale para "não existe" e "é de outro condomínio",
     # para não revelar a existência de unidades de outros prédios
@@ -44,7 +38,7 @@ def listar_moradores(
     apenas_ativos: bool = True,
 ) -> list[Morador]:
     """Lista os moradores do condomínio, com filtros opcionais."""
-    _exigir_condominio(db, condominio_id)
+    exigir_condominio(db, condominio_id)
     # O join com Unidade permite filtrar pelo condomínio, já que o morador
     # só guarda a unidade
     consulta = (

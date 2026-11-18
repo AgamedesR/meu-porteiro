@@ -7,21 +7,15 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
-from app.exceptions import Conflito, NaoEncontrado
-from app.models.condominio import Condominio
+from app.exceptions import Conflito
 from app.models.unidade import Unidade
 from app.schemas.unidade import UnidadeCriar
-
-def _exigir_condominio(db: Session, condominio_id: int) -> None:
-    """Levanta erro se o condomínio não existir."""
-    # db.get busca pela chave primária e devolve None se não achar
-    if db.get(Condominio, condominio_id) is None:
-        raise NaoEncontrado("Condomínio não encontrado")
+from app.services.comum import exigir_condominio
 
 
 def criar_unidade(db: Session, condominio_id: int, dados: UnidadeCriar) -> Unidade:
     """Cadastra uma unidade no condomínio; o número não pode se repetir nele."""
-    _exigir_condominio(db, condominio_id)
+    exigir_condominio(db, condominio_id)
     unidade = Unidade(
         condominio_id=condominio_id, andar=dados.andar, numero=dados.numero
     )
@@ -39,7 +33,7 @@ def criar_unidade(db: Session, condominio_id: int, dados: UnidadeCriar) -> Unida
 
 def listar_unidades(db: Session, condominio_id: int) -> list[Unidade]:
     """Lista as unidades do condomínio, por andar e número."""
-    _exigir_condominio(db, condominio_id)
+    exigir_condominio(db, condominio_id)
     consulta = (
         select(Unidade)
         .where(Unidade.condominio_id == condominio_id)
