@@ -6,7 +6,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
 from app.exceptions import Conflito, NaoEncontrado
-from app.routers import condominio, unidade
+from app.routers import condominio, morador, unidade
 
 app = FastAPI(title="Meu Porteiro")
 
@@ -23,6 +23,7 @@ async def tratar_conflito(request: Request, exc: Conflito):
 
 app.include_router(condominio.router)
 app.include_router(unidade.router)
+app.include_router(morador.router)
 
 
 @app.get("/saude")
